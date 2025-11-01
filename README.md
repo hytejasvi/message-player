@@ -10,23 +10,24 @@ Pure-Java demonstration of two players exchanging messages:
 mvn compile
 
 Run – single process
-```mvn exec:java "-Dexec.mainClass=com.example.player.Main" "-Dexec.args=--mode=inprocess"```
+mvn exec:java "-Dexec.mainClass=com.example.player.Main" "-Dexec.args=--mode=inprocess"
 
 Run – separate processes
 **Windows:**
-```start.bat```
+start.bat
 
 Linux/macOS:
-```./start.sh```
+./start.sh
+```
 
-**Class** **responsibilities**
-Message – immutable payload carrier
-Messenger – transport abstraction
-InProcessMessenger – queue-based, same-JVM implementation
-SocketMessenger – TCP-based, cross-JVM implementation
-Player – generic responder logic
-InitiatorPlayer – drives exactly 10 round-trips
-Main – launches single-JVM demo
-PlayerServer – TCP responder program
-PlayerClient – TCP initiator program
-ShutdownSignal – coordinates graceful stop
+**Class**               **responsibilities**
+Message –               immutable payload carrier
+Messenger –             transport abstraction
+InProcessMessenger –    queue-based, same-JVM implementation
+SocketMessenger –       TCP-based, cross-JVM implementation
+Player –                generic responder logic
+InitiatorPlayer –       drives exactly 10 round-trips
+Main –                  launches single-JVM demo
+PlayerServer –          TCP responder program
+PlayerClient –          TCP initiator program
+ShutdownSignal –        coordinates graceful stop
