@@ -21,13 +21,14 @@ Linux/macOS:
 ```
 
 **Class**               **responsibilities**
-Message –               immutable payload carrier
-Messenger –             transport abstraction
-InProcessMessenger –    queue-based, same-JVM implementation
-SocketMessenger –       TCP-based, cross-JVM implementation
-Player –                generic responder logic
-InitiatorPlayer –       drives exactly 10 round-trips
-Main –                  launches single-JVM demo
-PlayerServer –          TCP responder program
-PlayerClient –          TCP initiator program
-ShutdownSignal –        coordinates graceful stop
+
+*Message –               immutable payload carrier
+*Messenger –             transport abstraction
+*InProcessMessenger –    queue-based, same-JVM implementation
+*SocketMessenger –       TCP-based, cross-JVM implementation
+*Player –                generic responder logic
+*InitiatorPlayer –       drives exactly 10 round-trips
+*Main –                  launches single-JVM demo
+*PlayerServer –          TCP responder program
+*PlayerClient –          TCP initiator program
+*ShutdownSignal –        coordinates graceful stop
