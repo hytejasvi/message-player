@@ -25,20 +25,16 @@ public class Main {
     private static void runInProcess() {
         AtomicBoolean shutdown = new AtomicBoolean(false);
 
-        // Create matched messengers
         InProcessMessenger[] pair = InProcessMessenger.createPair("player1", "player2");
         Messenger m1 = pair[0];
         Messenger m2 = pair[1];
 
-        // Create players
         InitiatorPlayer p1 = new InitiatorPlayer("player1", m1, shutdown);
         Player p2 = new Player("player2", m2, shutdown);
 
-        // Start threads
         p1.start();
         p2.start();
 
-        // Wait for finish
         try {
             p1.join();
             p2.join();

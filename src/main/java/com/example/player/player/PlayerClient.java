@@ -2,7 +2,6 @@ package com.example.player.player;
 
 import com.example.player.messenger.Messenger;
 import com.example.player.messenger.SocketMessenger;
-import com.example.player.util.ShutdownSignal;
 
 import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -28,7 +27,6 @@ public class PlayerClient {
             Messenger messenger = new SocketMessenger(socket);
             InitiatorPlayer initiator = new InitiatorPlayer("player1", messenger, shutdown);
             initiator.run();
-            ShutdownSignal.stop();
             System.out.println("player1 finished");
         }
     }

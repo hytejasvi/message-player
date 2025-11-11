@@ -41,6 +41,7 @@ public class Player implements Runnable {
                 Message in = messenger.receive();
                 if ("__shutdown__".equals(in.payload())) {
                     System.out.println("[" + id + "]  shutdown signal received – exiting");
+                    shutdown.set(true);
                     break;
                 }
                 String newPayload = in.payload() + ":" + (++counter);

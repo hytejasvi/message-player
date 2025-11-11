@@ -33,14 +33,14 @@ public final class SocketMessenger implements Messenger {
     public Message receive() throws IOException {
         String line = in.readLine();
         if (line == null) {
-            throw new IOException("End reached");
+            throw new IOException("Connection closed by peer");
         }
-        int delim = line.indexOf('|');
-        if (delim == -1) {
+        int delimiter = line.indexOf('|');
+        if (delimiter == -1) {
             throw new IOException("Malformed message: " + line);
         }
-        String senderId = line.substring(0, delim);
-        String payload  = line.substring(delim + 1);
+        String senderId = line.substring(0, delimiter);
+        String payload  = line.substring(delimiter + 1);
         return new Message(senderId, payload);
     }
 

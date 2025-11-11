@@ -4,6 +4,7 @@ import com.example.player.messenger.Messenger;
 import com.example.player.messenger.SocketMessenger;
 
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -18,16 +19,16 @@ public class PlayerServer {
         }
         int port = Integer.parseInt(args[0]);
 
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("player2 listening on port " + port);
-            var socket = serverSocket.accept();
-            System.out.println("player2 connected");
+        try (ServerSocket serverSocket = new ServerSocket(port);
+             Socket socket = serverSocket.accept()) {
 
+            System.out.println("player2 connected");
             AtomicBoolean shutdown = new AtomicBoolean(false);
             Messenger messenger = new SocketMessenger(socket);
             Player responder = new Player("player2", messenger, shutdown);
             responder.start();
             responder.join();
+
             System.out.println("player2 finished");
         }
     }

@@ -5,6 +5,7 @@ import com.example.player.model.Message;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Same-JVM messenger backed by two blocking queues.
@@ -46,7 +47,10 @@ public final class InProcessMessenger implements Messenger {
 
     @Override
     public Message receive() throws InterruptedException {
-        String line = inboundQueue.take();
+        String line = inboundQueue.poll(5, TimeUnit.SECONDS);
+        if (line == null) {
+            throw new InterruptedException("Timeout waiting for message");
+        }
         int delimiter = line.indexOf('|');
         if (delimiter == -1) throw new IllegalArgumentException("Bad format: " + line);
         String senderId = line.substring(0, delimiter);
